@@ -41,24 +41,27 @@ const ANSWERS = [
 
 function EightBall({answers=ANSWERS}) {
   //Can we only have one state?
-  const [color, setColor] = useState('black');
-  const [msg, setMsg] = useState('Think of a Question');
-  const myStyles = {
-    color: 'white', //Only inline style when things are dynamic
-    backgroundColor: color,
-  }
-  console.log('EightBall', color, msg);
+  // const [color, setColor] = useState('black');
+  // const [msg, setMsg] = useState('Think of a Question');
 
-  //TODO: add docstring
+  const [answer, setAnswer] = useState({msg: 'Think of a Question', color: 'black'})
+
+  const myStyles = {
+    backgroundColor: answer.color,
+  }
+
+  console.log('EightBall', answer.color, answer.msg);
+
+  /** clickEightBall: gets random answer from list of answers,
+   * updates answer state. */
   function clickEightBall(e) {
     const answer = _.sample(answers);
-    setColor(answer.color);
-    setMsg(answer.msg);
+    setAnswer(answer);
   }
 
   return (
     <div className="EightBall" style={myStyles} onClick={clickEightBall}>
-      {msg}
+      {answer.msg}
     </div>
   );
 }
