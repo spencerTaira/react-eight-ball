@@ -44,7 +44,9 @@ function EightBall({answers=ANSWERS}) {
   // const [color, setColor] = useState('black');
   // const [msg, setMsg] = useState('Think of a Question');
 
-  const [answer, setAnswer] = useState({msg: 'Think of a Question', color: 'black'})
+  const defaultAnswer = {msg: 'Think of a Question', color: 'black'}
+
+  const [answer, setAnswer] = useState(defaultAnswer)
 
   const myStyles = {
     backgroundColor: answer.color,
@@ -59,9 +61,16 @@ function EightBall({answers=ANSWERS}) {
     setAnswer(answer);
   }
 
+  function resetEightBall(evt) {
+    setAnswer(defaultAnswer);
+  }
+
   return (
-    <div className="EightBall" style={myStyles} onClick={clickEightBall}>
-      {answer.msg}
+    <div>
+      <div className="EightBall" style={myStyles} onClick={clickEightBall}>
+        {answer.msg}
+      </div>
+      <button className='btn btn-primary' onClick={resetEightBall}>RESET</button>
     </div>
   );
 }
